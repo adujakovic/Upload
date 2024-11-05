@@ -1,4 +1,4 @@
-name: 'Upload Episode from YouTube To Anchor.Fm'
+ame: 'Upload Episode from YouTube To Anchor.Fm'
 
 on:
   push:
@@ -10,19 +10,7 @@ jobs:
   upload_episode:
     runs-on: ubuntu-latest
     steps:
-      - name: Clear Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'  # Specify Node.js version 20
-      - name: Set Node.js 20 Environment Variable
-        run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV
-      - uses: actions/checkout@v3  # Ensure this is v3
+      - uses: actions/checkout@v2
       - name: Upload Episode from YouTube To Anchor.Fm
         uses: Schroedinger-Hat/youtube-to-anchorfm@v2.5.0
         env:
@@ -30,7 +18,6 @@ jobs:
           ANCHOR_PASSWORD: ${{ secrets.ANCHOR_PASSWORD }}
           SPOTIFY_EMAIL: ${{ secrets.SPOTIFY_EMAIL }}
           SPOTIFY_PASSWORD: ${{ secrets.SPOTIFY_PASSWORD }}
-          EPISODE_PATH: /github/workspace
           SAVE_AS_DRAFT: true
           LOAD_THUMBNAIL: true
           URL_IN_DESCRIPTION: true

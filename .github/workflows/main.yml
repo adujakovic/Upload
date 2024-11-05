@@ -1,7 +1,5 @@
 name: 'Upload Episode from YouTube To Anchor.Fm'
-runs:
-  using: 'node20'
-  main: 'main.js'
+
 on:
   push:
     paths:
@@ -12,7 +10,7 @@ jobs:
   upload_episode:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.2.0
       - name: Upload Episode from YouTube To Anchor.Fm
         uses: Schroedinger-Hat/youtube-to-anchorfm@v2.5.0
         env:

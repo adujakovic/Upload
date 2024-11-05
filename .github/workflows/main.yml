@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '20'  # Specify Node.js version 20
+      - name: Set Node.js 20 Environment Variable
+        run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV
       - uses: actions/checkout@v3  # Ensure this is v3
       - name: Upload Episode from YouTube To Anchor.Fm
         uses: Schroedinger-Hat/youtube-to-anchorfm@v2.5.0
